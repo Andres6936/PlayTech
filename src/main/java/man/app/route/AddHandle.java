@@ -17,7 +17,7 @@ public class AddHandle implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         if (exchange.getRequestMethod().equals("GET")) {
             File page = new File(Objects.requireNonNull(
-                    HomeHandler.class.getClassLoader().getResource("html/add.html")).getFile());
+                    ClassLoader.getSystemResource("html/add.html").getFile()));
 
             String contentPage = new String(Files.readAllBytes(page.toPath()));
 
