@@ -61,7 +61,7 @@ public class StaticHandle implements HttpHandler {
         if (extension.equals("css")) {
             return "text/css";
         } else if (extension.equals("js")) {
-            return "application/javascript";
+            return "text/javascript";
         }
 
         return "text";
