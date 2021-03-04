@@ -22,7 +22,7 @@ public class StaticHandle implements HttpHandler {
             String contentPage = new String(Files.readAllBytes(page.toPath()));
 
             exchange.getResponseHeaders().set("Content-Type", mimeType);
-            exchange.sendResponseHeaders(200, contentPage.length());
+            exchange.sendResponseHeaders(200, contentPage.getBytes().length);
 
             OutputStream outputStream = exchange.getResponseBody();
             outputStream.write(contentPage.getBytes());
