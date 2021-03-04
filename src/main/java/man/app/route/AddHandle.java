@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
 
 public class AddHandle implements HttpHandler {
@@ -16,12 +18,8 @@ public class AddHandle implements HttpHandler {
         if (exchange.getRequestMethod().equals("GET")) {
             File page = new File(Objects.requireNonNull(
                     HomeHandler.class.getClassLoader().getResource("html/add.html")).getFile());
-            FileInputStream inputStream = new FileInputStream(page);
-            byte[] inputData = new byte[(int) page.length()];
-            inputStream.read(inputData);
-            inputStream.close();
 
-            String contentPage = new String(inputData, StandardCharsets.UTF_8);
+            String contentPage = new String(Files.readAllBytes(page.toPath()));
 
             exchange.sendResponseHeaders(200, contentPage.length());
 
