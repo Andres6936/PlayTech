@@ -1,7 +1,9 @@
 package man.app;
 
 import com.sun.net.httpserver.HttpServer;
+import man.app.route.AddHandle;
 import man.app.route.HomeHandler;
+import man.app.route.ShowHandle;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -12,6 +14,8 @@ public class App {
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 6936), 0);
             server.createContext("/home", new HomeHandler());
+            server.createContext("/show", new ShowHandle());
+            server.createContext("/add", new AddHandle());
             server.setExecutor(Executors.newFixedThreadPool(10));
             server.start();
         } catch (IOException exception) {
