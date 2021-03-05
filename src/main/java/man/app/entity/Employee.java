@@ -19,6 +19,13 @@ public class Employee {
         this.salary = _salary;
     }
 
+    // Methods
+
+    public String getJSON() {
+        return String.format("{'dui':%d, 'nit':%d, 'salary':%f, 'name':'%s', 'department':'%s', 'marital-status':'%s'}",
+                dui, nit, salary, name, department, maritalStatus.name());
+    }
+
     // Getters and Setters
 
     public int getDui() {

@@ -57,12 +57,14 @@ public class ShowHandle implements HttpHandler {
 
                 employees.add(employee);
 
-                System.out.println("DUI: " + dui);
-                System.out.println("Name: " + name);
-                System.out.println("Department: " + department);
-                System.out.println("Salary: " + salary);
-                System.out.println("Marital Status: " + maritalStatus);
-                System.out.println("NIT: " + nit);
+                System.out.println(employee.getJSON());
+
+//                System.out.println("DUI: " + dui);
+//                System.out.println("Name: " + name);
+//                System.out.println("Department: " + department);
+//                System.out.println("Salary: " + salary);
+//                System.out.println("Marital Status: " + maritalStatus);
+//                System.out.println("NIT: " + nit);
             }
 
             connection.close();
