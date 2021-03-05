@@ -26,6 +26,15 @@ public class Employee {
                 dui, nit, salary, name, department, maritalStatus.name());
     }
 
+    public void print() {
+        System.out.println("DUI: " + dui);
+        System.out.println("NIT: " + nit);
+        System.out.println("Name: " + name);
+        System.out.println("Salary: " + salary);
+        System.out.println("Department: " + department);
+        System.out.println("Marital Status: " + maritalStatus);
+    }
+
     // Getters and Setters
 
     public int getDui() {
