@@ -1,10 +1,7 @@
 package man.app;
 
 import com.sun.net.httpserver.HttpServer;
-import man.app.route.AddHandle;
-import man.app.route.HomeHandler;
-import man.app.route.ShowHandle;
-import man.app.route.StaticHandle;
+import man.app.route.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -18,6 +15,7 @@ public class App {
             server.createContext("/css", new StaticHandle());
             server.createContext("/js", new StaticHandle());
             // Manage the routes.
+            server.createContext("/employee/all", new EmployeeAllHandle());
             server.createContext("/home", new HomeHandler());
             server.createContext("/show", new ShowHandle());
             server.createContext("/add", new AddHandle());
