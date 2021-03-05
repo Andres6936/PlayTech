@@ -36,7 +36,19 @@ public class ShowHandle implements HttpHandler {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("Select * From Employee");
             while (resultSet.next()) {
-                System.out.println("DUI: " + resultSet.getInt(1));
+                int dui = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String department = resultSet.getString(3);
+                float salary = resultSet.getFloat(4);
+                String maritalStatus = resultSet.getString(5);
+                int nit = resultSet.getInt(6);
+
+                System.out.println("DUI: " + dui);
+                System.out.println("Name: " + name);
+                System.out.println("Department: " + department);
+                System.out.println("Salary: " + salary);
+                System.out.println("Marital Status: " + maritalStatus);
+                System.out.println("NIT: " + nit);
             }
             connection.close();
         } catch (SQLException ignored) {
