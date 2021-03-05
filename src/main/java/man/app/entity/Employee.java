@@ -22,7 +22,7 @@ public class Employee {
     // Methods
 
     public String getJSON() {
-        return String.format("{'dui':%d, 'nit':%d, 'salary':%f, 'name':'%s', 'department':'%s', 'marital-status':'%s'}",
+        return String.format("{\"dui\":%d, \"nit\":%d, \"salary\":%f, \"name\":\"%s\", \"department\":\"%s\", \"marital-status\":\"%s\"},",
                 dui, nit, salary, name, department, maritalStatus.name());
     }
 
