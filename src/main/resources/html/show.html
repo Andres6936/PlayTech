@@ -97,6 +97,8 @@
 
             const row = document.createElement('tr');
             // Each tr element can be selected for the user.
+            // With this mechanism is simple get the value of current tr when
+            // the user to make click in the element.
             row.addEventListener('click', selectElementTable);
             row.appendChild(nameElement);
             row.appendChild(duiElement);
