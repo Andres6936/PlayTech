@@ -54,6 +54,9 @@
 <script type="module">
 
     function selectElementTable() {
+        // The 'this' keyword reference the current 'tr' element selected for
+        // the user in the DOM.
+
         // Deleted the state active of select element (if exist, see the operator ?).
         document.querySelector('.table-active')?.classList.remove('table-active');
 
