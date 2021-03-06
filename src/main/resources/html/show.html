@@ -53,6 +53,14 @@
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 <script type="module">
 
+    function selectElementTable() {
+        // Deleted the state active of select element (if exist, see the operator ?).
+        document.querySelector('.table-active')?.classList.remove('table-active');
+
+        // Select the current element.
+        this.classList.add('table-active');
+    }
+
     function getGenericSwitch() {
         const divElement = document.createElement('div');
         divElement.classList.add('form-check', 'form-switch', 'ms-1');
@@ -88,6 +96,8 @@
             activeElement.appendChild(getGenericSwitch());
 
             const row = document.createElement('tr');
+            // Each tr element can be selected for the user.
+            row.addEventListener('click', selectElementTable);
             row.appendChild(nameElement);
             row.appendChild(duiElement);
             row.appendChild(salaryElement);
