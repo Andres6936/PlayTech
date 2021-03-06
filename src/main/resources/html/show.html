@@ -53,6 +53,19 @@
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 <script type="module">
 
+    function getGenericSwitch() {
+        const divElement = document.createElement('div');
+        divElement.classList.add('form-check', 'form-switch', 'ms-1');
+
+        const inputElement = document.createElement('input');
+        inputElement.type = "checkbox";
+        inputElement.checked = true;
+        inputElement.classList.add('form-check-input');
+
+        divElement.appendChild(inputElement);
+        return divElement;
+    }
+
     async function getAllEmployee() {
         const response = await fetch('/employee/all');
         return JSON.parse(await response.text());
@@ -71,10 +84,14 @@
             const salaryElement = document.createElement('td');
             salaryElement.innerHTML = employee.salary;
 
+            const activeElement = document.createElement('td');
+            activeElement.appendChild(getGenericSwitch());
+
             const row = document.createElement('tr');
             row.appendChild(nameElement);
             row.appendChild(duiElement);
             row.appendChild(salaryElement);
+            row.appendChild(activeElement);
 
             bodyTable.appendChild(row);
         }
