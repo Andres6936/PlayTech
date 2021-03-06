@@ -58,7 +58,27 @@
         return JSON.parse(await response.text());
     }
 
-    getAllEmployee().then(employees => console.log(employees));
+    getAllEmployee().then(employees => {
+        const bodyTable = document.querySelector('tbody');
+
+        for (const employee of employees) {
+            const nameElement = document.createElement('td');
+            nameElement.innerHTML = employee.name;
+
+            const duiElement = document.createElement('td');
+            duiElement.innerHTML = employee.dui;
+
+            const salaryElement = document.createElement('td');
+            salaryElement.innerHTML = employee.salary;
+
+            const row = document.createElement('tr');
+            row.appendChild(nameElement);
+            row.appendChild(duiElement);
+            row.appendChild(salaryElement);
+
+            bodyTable.appendChild(row);
+        }
+    });
 </script>
 </body>
 </html>
