@@ -55,7 +55,8 @@ public class EmployeeAllHandle implements HttpHandler {
             }
 
             contentRequestBuild.append(']');
-            String contentRequest = contentRequestBuild.toString();
+            // Deleted the last comma character of string for avoid conversion problems with JSON
+            String contentRequest = contentRequestBuild.toString().replace(",]", "]");
 
             exchange.sendResponseHeaders(200, contentRequest.getBytes().length);
 

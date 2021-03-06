@@ -21,6 +21,8 @@ public class App {
             server.createContext("/add", new AddHandle());
             server.setExecutor(Executors.newFixedThreadPool(10));
             server.start();
+
+            System.out.println("START: 'localhost:6936'");
         } catch (IOException exception) {
             System.err.println("Error Initializing the Server");
         }
