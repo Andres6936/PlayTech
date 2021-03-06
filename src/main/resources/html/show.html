@@ -51,5 +51,14 @@
     </section>
 </main>
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+<script type="module">
+
+    async function getAllEmployee() {
+        const response = await fetch('/employee/all');
+        return JSON.parse(await response.text());
+    }
+
+    getAllEmployee().then(employees => console.log(employees));
+</script>
 </body>
 </html>
