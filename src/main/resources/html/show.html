@@ -36,7 +36,7 @@
             </tbody>
         </table>
 
-        <div class="btn-group pt-3 col-6 float-end d-none">
+        <div id="man-actions-rows" class="btn-group pt-3 col-6 float-end d-none">
             <button type="button" class="btn btn-danger">Delete</button>
             <button type="button" class="btn border">Edit</button>
         </div>
@@ -65,6 +65,8 @@
 
         // Deleted the state active of select element (if exist, see the operator ?).
         document.querySelector('.table-active')?.classList.remove('table-active');
+        // Show the actions available for the current 'tr' element.
+        document.getElementById('man-actions-rows').classList.remove('d-none');
 
         // Select the current element.
         this.classList.add('table-active');
