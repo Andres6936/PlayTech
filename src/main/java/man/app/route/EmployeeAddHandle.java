@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.nio.charset.StandardCharsets;
 
 public class EmployeeAddHandle implements HttpHandler {
     @Override
@@ -26,13 +27,15 @@ public class EmployeeAddHandle implements HttpHandler {
                 byte[] data = new byte[contentLength];
                 int length = is.read(data);
 
-                // Send RESPONSE Headers
-                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentLength);
+                String contentForm = new String(data, StandardCharsets.UTF_8);
 
-                // RESPONSE Body
-                OutputStream os = exchange.getResponseBody();
-                os.write(data);
-                exchange.close();
+                // Send RESPONSE Headers
+                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentForm.getBytes().length);
+
+                OutputStream outputStream = exchange.getResponseBody();
+                outputStream.write(contentForm.getBytes());
+                outputStream.flush();
+                outputStream.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
