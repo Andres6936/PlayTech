@@ -23,20 +23,22 @@
 <main class="row row-cols-1 mt-3">
     <section class="col">
         <div class="bg-white rounded-3 border p-3 shadow mx-3">
-            <form class="row g-2">
+            <form name="man-form-add" action="/employee/add" onsubmit="return validateFormAdd()" method="post"
+                  class="row g-2">
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-dui">DUI:</label>
-                    <input id="man-dui" type="number" class="form-control col-8">
+                    <input id="man-dui" type="number" class="form-control col-8" name="man-input-employee-dui">
                 </div>
 
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-employee">Employee:</label>
-                    <input id="man-employee" type="text" class="form-control col-8">
+                    <input id="man-employee" type="text" class="form-control col-8" name="man-input-employee-name">
                 </div>
 
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-salary">Salary:</label>
-                    <input id="man-salary" type="number" class="form-control col-8" oninput="updateLabels()">
+                    <input id="man-salary" type="number" class="form-control col-8" oninput="updateLabels()"
+                           name="man-input-employee-salary">
                 </div>
 
                 <div class="form-check ms-4">
@@ -91,6 +93,33 @@
         document.getElementById('man-isss').innerText = numberFormat.format(isss);
         document.getElementById('man-income').innerText = numberFormat.format(income);
         document.getElementById('man-total').innerText = numberFormat.format(afp + isss + income);
+    }
+
+    function validateFormAdd() {
+        const duiEmployee = document.forms['man-form-add']['man-input-employee-dui'].value;
+        const nameEmployee = document.forms['man-form-add']['man-input-employee-name'].value;
+        const salaryEmployee = document.forms['man-form-add']['man-input-employee-salary'].value;
+
+        if (duiEmployee === '') {
+            alert('The DUI must be filled out.');
+            // The form not is valid.
+            return false;
+        }
+
+        if (nameEmployee === '') {
+            alert('The name must be filled out.');
+            // The form not is valid.
+            return false;
+        }
+
+        if (salaryEmployee === '') {
+            alert('The salary must be filled out.');
+            // The form not is valid.
+            return false;
+        }
+
+        // The form has been validated and the information is true.
+        return true;
     }
 </script>
 </body>
