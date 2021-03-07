@@ -27,14 +27,16 @@
                   class="row g-2">
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-dui">DUI:</label>
+                    <!-- Value greater or equal 1 (Not negative numbers) -->
                     <input id="man-dui" type="number" class="form-control col-8" name="man-input-employee-dui" min="1"
                            required>
                 </div>
 
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-employee">Employee:</label>
+                    <!-- Only letters -->
                     <input id="man-employee" type="text" class="form-control col-8" name="man-input-employee-name"
-                           required>
+                           pattern="[A-Za-z]+" required>
                 </div>
 
                 <div class="input-group">
