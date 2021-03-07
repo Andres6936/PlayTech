@@ -16,6 +16,7 @@ public class App {
             server.createContext("/js", new StaticHandle());
             // Manage the routes.
             server.createContext("/employee/all", new EmployeeAllHandle());
+            server.createContext("/employee/add", new EmployeeAddHandle());
             server.createContext("/home", new HomeHandler());
             server.createContext("/show", new ShowHandle());
             server.createContext("/add", new AddHandle());
