@@ -56,22 +56,22 @@
         <div class="border bg-white mx-3 py-5 px-3 rounded-3 shadow">
             <div class="input-group">
                 <p class="col-5 text-end">AFP (8%)</p>
-                <p id="man-afp" class="col-7">$0</p>
+                <p id="man-afp" class="col-7">COP 0</p>
             </div>
 
             <div class="input-group">
                 <p class="col-5 text-end">ISSS (11%)</p>
-                <p id="man-isss" class="col-7">$0</p>
+                <p id="man-isss" class="col-7">COP 0</p>
             </div>
 
             <div class="input-group">
                 <p class="col-5 text-end">Income (6%)</p>
-                <p id="man-income" class="col-7">$0</p>
+                <p id="man-income" class="col-7">COP 0</p>
             </div>
 
             <div class="input-group border-top mt-2 pt-2">
                 <p class="col-5 fw-bold text-end">Total</p>
-                <p id="man-total" class="col-7 fw-bold">$0</p>
+                <p id="man-total" class="col-7 fw-bold">COP 0</p>
             </div>
         </div>
     </section>
@@ -84,10 +84,12 @@
         const isss = salary * 0.11;
         const income = salary * 0.06;
 
-        document.getElementById('man-afp').innerText = '$ ' + afp;
-        document.getElementById('man-isss').innerText = '$ ' + isss;
-        document.getElementById('man-income').innerText = '$ ' + income;
-        document.getElementById('man-total').innerText = '$ ' + (afp + isss + income);
+        const numberFormat = new Intl.NumberFormat('co-ES', {style: 'currency', currency: 'COP'});
+
+        document.getElementById('man-afp').innerText = numberFormat.format(afp);
+        document.getElementById('man-isss').innerText = numberFormat.format(isss);
+        document.getElementById('man-income').innerText = numberFormat.format(income);
+        document.getElementById('man-total').innerText = numberFormat.format(afp + isss + income);
     }
 </script>
 </body>
