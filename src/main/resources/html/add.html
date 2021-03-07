@@ -84,6 +84,7 @@
         const isss = salary * 0.11;
         const income = salary * 0.06;
 
+        // @type {Intl.NumberFormat} The Intl.NumberFormat object enables language-sensitive number formatting.
         const numberFormat = new Intl.NumberFormat('co-ES', {style: 'currency', currency: 'COP'});
 
         document.getElementById('man-afp').innerText = numberFormat.format(afp);
