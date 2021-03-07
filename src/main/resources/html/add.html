@@ -36,7 +36,7 @@
 
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-salary">Salary:</label>
-                    <input id="man-salary" type="number" class="form-control col-8">
+                    <input id="man-salary" type="number" class="form-control col-8" oninput="updateLabels()">
                 </div>
 
                 <div class="form-check ms-4">
@@ -56,26 +56,39 @@
         <div class="border bg-white mx-3 py-5 px-3 rounded-3 shadow">
             <div class="input-group">
                 <p class="col-5 text-end">AFP (8%)</p>
-                <p class="col-7">$0</p>
+                <p id="man-afp" class="col-7">$0</p>
             </div>
 
             <div class="input-group">
                 <p class="col-5 text-end">ISSS (11%)</p>
-                <p class="col-7">$0</p>
+                <p id="man-isss" class="col-7">$0</p>
             </div>
 
             <div class="input-group">
                 <p class="col-5 text-end">Income (6%)</p>
-                <p class="col-7">$0</p>
+                <p id="man-income" class="col-7">$0</p>
             </div>
 
             <div class="input-group border-top mt-2 pt-2">
                 <p class="col-5 fw-bold text-end">Total</p>
-                <p class="col-7 fw-bold">$0</p>
+                <p id="man-total" class="col-7 fw-bold">$0</p>
             </div>
         </div>
     </section>
 </main>
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+<script>
+    function updateLabels() {
+        const salary = document.getElementById('man-salary').value;
+        const afp = salary * 0.08;
+        const isss = salary * 0.11;
+        const income = salary * 0.06;
+
+        document.getElementById('man-afp').innerText = '$ ' + afp;
+        document.getElementById('man-isss').innerText = '$ ' + isss;
+        document.getElementById('man-income').innerText = '$ ' + income;
+        document.getElementById('man-total').innerText = '$ ' + (afp + isss + income);
+    }
+</script>
 </body>
 </html>
