@@ -27,18 +27,19 @@
                   class="row g-2">
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-dui">DUI:</label>
-                    <input id="man-dui" type="number" class="form-control col-8" name="man-input-employee-dui">
+                    <input id="man-dui" type="number" class="form-control col-8" name="man-input-employee-dui" required>
                 </div>
 
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-employee">Employee:</label>
-                    <input id="man-employee" type="text" class="form-control col-8" name="man-input-employee-name">
+                    <input id="man-employee" type="text" class="form-control col-8" name="man-input-employee-name"
+                           required>
                 </div>
 
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-salary">Salary:</label>
                     <input id="man-salary" type="number" class="form-control col-8" oninput="updateLabels()"
-                           name="man-input-employee-salary">
+                           name="man-input-employee-salary" required>
                 </div>
 
                 <div class="form-check ms-4">
@@ -95,28 +96,32 @@
         document.getElementById('man-total').innerText = numberFormat.format(afp + isss + income);
     }
 
+    /**
+     * Data validation is the process of ensuring that user input is clean, correct, and useful.
+     * @returns {boolean} True if the form is clean, correct and useful, false otherwise.
+     */
     function validateFormAdd() {
         const duiEmployee = document.forms['man-form-add']['man-input-employee-dui'].value;
         const nameEmployee = document.forms['man-form-add']['man-input-employee-name'].value;
         const salaryEmployee = document.forms['man-form-add']['man-input-employee-salary'].value;
 
-        if (duiEmployee === '') {
-            alert('The DUI must be filled out.');
-            // The form not is valid.
-            return false;
-        }
-
-        if (nameEmployee === '') {
-            alert('The name must be filled out.');
-            // The form not is valid.
-            return false;
-        }
-
-        if (salaryEmployee === '') {
-            alert('The salary must be filled out.');
-            // The form not is valid.
-            return false;
-        }
+        // if (duiEmployee === '') {
+        //     alert('The DUI must be filled out.');
+        //     // The form not is valid.
+        //     return false;
+        // }
+        //
+        // if (nameEmployee === '') {
+        //     alert('The name must be filled out.');
+        //     // The form not is valid.
+        //     return false;
+        // }
+        //
+        // if (salaryEmployee === '') {
+        //     alert('The salary must be filled out.');
+        //     // The form not is valid.
+        //     return false;
+        // }
 
         // The form has been validated and the information is true.
         return true;
