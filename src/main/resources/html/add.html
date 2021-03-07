@@ -27,7 +27,8 @@
                   class="row g-2">
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-dui">DUI:</label>
-                    <input id="man-dui" type="number" class="form-control col-8" name="man-input-employee-dui" required>
+                    <input id="man-dui" type="number" class="form-control col-8" name="man-input-employee-dui" min="1"
+                           required>
                 </div>
 
                 <div class="input-group">
@@ -38,8 +39,9 @@
 
                 <div class="input-group">
                     <label class="input-group-text bg-white col-4" for="man-salary">Salary:</label>
+                    <!-- Value greater or equal to 908.526 (SMMLV) -->
                     <input id="man-salary" type="number" class="form-control col-8" oninput="updateLabels()"
-                           name="man-input-employee-salary" required>
+                           name="man-input-employee-salary" min="1" required>
                 </div>
 
                 <div class="form-check ms-4">
@@ -98,30 +100,27 @@
 
     /**
      * Data validation is the process of ensuring that user input is clean, correct, and useful.
+     *
+     * The current mechanism of validation is Client side validation, the which is performed by
+     * a web browser, before input is sent to a web server.
+     *
      * @returns {boolean} True if the form is clean, correct and useful, false otherwise.
      */
     function validateFormAdd() {
-        const duiEmployee = document.forms['man-form-add']['man-input-employee-dui'].value;
         const nameEmployee = document.forms['man-form-add']['man-input-employee-name'].value;
         const salaryEmployee = document.forms['man-form-add']['man-input-employee-salary'].value;
 
-        // if (duiEmployee === '') {
-        //     alert('The DUI must be filled out.');
-        //     // The form not is valid.
-        //     return false;
-        // }
-        //
-        // if (nameEmployee === '') {
-        //     alert('The name must be filled out.');
-        //     // The form not is valid.
-        //     return false;
-        // }
-        //
-        // if (salaryEmployee === '') {
-        //     alert('The salary must be filled out.');
-        //     // The form not is valid.
-        //     return false;
-        // }
+        if (nameEmployee === '') {
+            alert('The name must be filled out.');
+            // The form not is valid.
+            return false;
+        }
+
+        if (salaryEmployee < '908526') {
+            alert('The salary must be greater or equal to SMMLV (COP 908.526).');
+            // The form not is valid.
+            return false;
+        }
 
         // The form has been validated and the information is true.
         return true;
