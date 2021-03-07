@@ -3,12 +3,16 @@ package man.app.route;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import man.app.entity.Employee;
+import man.app.entity.MaritalStatus;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
+import java.sql.*;
+import java.util.Arrays;
 
 public class EmployeeAddHandle implements HttpHandler {
     @Override
@@ -28,6 +32,27 @@ public class EmployeeAddHandle implements HttpHandler {
                 int length = is.read(data);
 
                 String contentForm = new String(data, StandardCharsets.UTF_8);
+                String[] keyValue = contentForm.split("&");
+
+                String name = keyValue[1].split("=")[1];
+                float salary = Float.parseFloat(keyValue[2].split("=")[1]);
+
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    Connection connection = DriverManager.getConnection(
+                            "jdbc:mysql://localhost:3306/Mandomedia", "root", "HDgtDVi5");
+                    PreparedStatement statement = connection.prepareStatement("Insert INTO Employee (Name, Salary) VALUES (?, ?)");
+                    statement.setString(1, name);
+                    statement.setFloat(2, salary);
+
+                    statement.execute();
+
+                    connection.close();
+                } catch (SQLException ignored) {
+                    System.err.println("Error MySQL Connection");
+                } catch (ClassNotFoundException ignored) {
+                    System.err.println("The Driver hasn't been loaded");
+                }
 
                 // Send RESPONSE Headers
                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentForm.getBytes().length);
