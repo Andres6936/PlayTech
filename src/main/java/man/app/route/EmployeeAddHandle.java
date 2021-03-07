@@ -31,10 +31,17 @@ public class EmployeeAddHandle implements HttpHandler {
                 byte[] data = new byte[contentLength];
                 int length = is.read(data);
 
+                // Currently, the form had three (3) fields.
                 String contentForm = new String(data, StandardCharsets.UTF_8);
+                // Split the form in a array of length three (3).
                 String[] keyValue = contentForm.split("&");
 
+                // The current convention is: DUI, NAME and SALARY.
+                // The index are: DUI (0), NAME (1) and SALARY (1).
+
+                // Get the value of this field. Again, we divided the String and get the value in the position 1.
                 String name = keyValue[1].split("=")[1];
+                // Same process here, divide and get the value of field.
                 float salary = Float.parseFloat(keyValue[2].split("=")[1]);
 
                 try {
