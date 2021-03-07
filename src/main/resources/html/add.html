@@ -36,7 +36,7 @@
                     <label class="input-group-text bg-white col-4" for="man-employee">Employee:</label>
                     <!-- Only letters -->
                     <input id="man-employee" type="text" class="form-control col-8" name="man-input-employee-name"
-                           pattern="[A-Za-z]+" required>
+                           required>
                 </div>
 
                 <div class="input-group">
@@ -112,13 +112,15 @@
         const nameEmployee = document.forms['man-form-add']['man-input-employee-name'].value;
         const salaryEmployee = document.forms['man-form-add']['man-input-employee-salary'].value;
 
-        if (nameEmployee === '') {
-            alert('The name must be filled out.');
+        const onlyNames = /^[a-zA-Z ]*$/;
+
+        if (!nameEmployee.match(onlyNames)) {
+            alert('The name must be content only letters and spaces (not numbers).');
             // The form not is valid.
             return false;
         }
 
-        if (salaryEmployee < '908526') {
+        if (salaryEmployee < 908526) {
             alert('The salary must be greater or equal to SMMLV (COP 908.526).');
             // The form not is valid.
             return false;
