@@ -4,11 +4,13 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -61,11 +63,14 @@ public class EmployeeAddHandle implements HttpHandler {
                     System.err.println("The Driver hasn't been loaded");
                 }
 
-                // Send RESPONSE Headers
-                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentForm.getBytes().length);
+                File page = new File(ClassLoader.getSystemResource("html/successful.html").getFile());
+
+                String contentPage = new String(Files.readAllBytes(page.toPath()));
+
+                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentPage.length());
 
                 OutputStream outputStream = exchange.getResponseBody();
-                outputStream.write(contentForm.getBytes());
+                outputStream.write(contentPage.getBytes());
                 outputStream.flush();
                 outputStream.close();
 
