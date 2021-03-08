@@ -33,7 +33,7 @@ public class EmployeeAllHandle implements HttpHandler {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection connection = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/Mandomedia", "root", "HDgtDVi5");
+                        "jdbc:mysql://localhost:3306/Mandomedia", "root", "root");
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("Select * From Employee");
 
@@ -55,7 +55,7 @@ public class EmployeeAllHandle implements HttpHandler {
 
                 connection.close();
             } catch (SQLException ignored) {
-                System.err.println("Error MySQL Connection");
+                System.err.println("Error MySQL Connection, please change the user || password in source code.");
             } catch (ClassNotFoundException ignored) {
                 System.err.println("The Driver hasn't been loaded");
             }
