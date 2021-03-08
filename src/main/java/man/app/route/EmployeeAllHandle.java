@@ -12,6 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeAllHandle implements HttpHandler {
+
+    /**
+     * The format of information send to client is:
+     * <p>
+     * Array of object JSON, each object JSON had the follow properties:
+     * <p>
+     * dui: Interger
+     * nit: Integer
+     * salary: Float
+     * name: String
+     * department: String
+     * marital-status: String
+     */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         if (exchange.getRequestMethod().equals("GET")) {
