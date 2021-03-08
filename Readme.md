@@ -10,3 +10,10 @@ It presents a set of well-defined operations, the most important being GET, POST
 resources. is used on all resources.
 
 It uses unique URIs following a universal syntax.
+
+### Frameworks and libraries used
+
+- MySQL 8.0.23
+- Java JDK 15
+- MySQL Connector 8.0.23 (See folder 'lib')
+- Bootstrap 5 Beta 2
