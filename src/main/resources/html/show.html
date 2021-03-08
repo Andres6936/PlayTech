@@ -52,12 +52,16 @@
                 </label>
             </form>
 
-            <button class="col-3 btn bg-white border">Add</button>
+            <button class="col-3 btn bg-white border" onclick="redirectAddPage()">Add</button>
         </div>
     </section>
 </main>
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 <script type="module">
+
+    function redirectAddPage() {
+        window.location.href = '/add';
+    }
 
     function selectElementTable() {
         // The 'this' keyword reference the current 'tr' element selected for
