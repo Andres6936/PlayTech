@@ -85,6 +85,11 @@
         return divElement;
     }
 
+    /**
+     * Return a arrays of object with the follow properties.
+     *
+     * @returns {Promise<Array.<{dui:number, nit:number, name:string, department:string, salary:number, marital-status:string}>>}
+     */
     async function getAllEmployee() {
         const response = await fetch('/employee/all');
         return JSON.parse(await response.text());
