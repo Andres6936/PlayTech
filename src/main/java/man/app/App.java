@@ -15,11 +15,20 @@ public class App {
             server.createContext("/css", new StaticHandle());
             server.createContext("/js", new StaticHandle());
             // Manage the routes.
-            server.createContext("/employee/all", new EmployeeAllHandle());
-            server.createContext("/employee/add", new EmployeeAddHandle());
+            server.createContext("/table/all", new EmployeeAllHandle());
+            server.createContext("/table/view", new EmployeeAddHandle());
+            server.createContext("/order/all", new ShowHandle());
+            server.createContext("/order/add", new ShowHandle());
+            server.createContext("/order/view", new AddHandle());
+            server.createContext("/order/update", new ShowHandle());
+            server.createContext("/order/remove", new ShowHandle());
+            server.createContext("/waiter/all", new ShowHandle());
+            server.createContext("/waiter/add", new ShowHandle());
+            server.createContext("/waiter/view", new ShowHandle());
+            server.createContext("/waiter/update", new ShowHandle());
+            server.createContext("/waiter/remove", new ShowHandle());
+            server.createContext("/daily/menu", new AddHandle());
             server.createContext("/home", new HomeHandler());
-            server.createContext("/show", new ShowHandle());
-            server.createContext("/add", new AddHandle());
             server.setExecutor(Executors.newFixedThreadPool(10));
             server.start();
 
