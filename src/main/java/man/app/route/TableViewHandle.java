@@ -19,6 +19,8 @@ public class TableViewHandle implements HttpHandler {
         if (exchange.getRequestMethod().equals("GET")) {
             File page = new File(ClassLoader.getSystemResource("html/show.html").getFile());
 
+            System.out.println(exchange.getRequestURI().getRawQuery());
+
             String contentPage = new String(Files.readAllBytes(page.toPath()));
 
             exchange.sendResponseHeaders(200, contentPage.length());
