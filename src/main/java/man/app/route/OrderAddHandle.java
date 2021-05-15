@@ -58,8 +58,8 @@ public class OrderAddHandle implements HttpHandler {
                     statement.execute();
 
                     connection.close();
-                } catch (SQLException ignored) {
-                    System.err.println("Error MySQL Connection");
+                } catch (SQLException exception) {
+                    System.err.println("Error MySQL Connection: " + exception.getMessage());
                 } catch (ClassNotFoundException ignored) {
                     System.err.println("The Driver hasn't been loaded");
                 }
