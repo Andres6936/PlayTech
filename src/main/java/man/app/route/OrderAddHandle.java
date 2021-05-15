@@ -47,7 +47,7 @@ public class OrderAddHandle implements HttpHandler {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection connection = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/PlayTech", "root", "HDgtDVi5");
-                    PreparedStatement statement = connection.prepareStatement("Insert INTO Order " +
+                    PreparedStatement statement = connection.prepareStatement("Insert INTO `Order` " +
                             "(MealIdentification, TableNumber, Turn, Date, WaiterNumber) VALUES (?, ?, ?, ?, ?)");
                     statement.setInt(1, Integer.parseInt(params.get("Meal")));
                     statement.setInt(2, Integer.parseInt(params.get("Table")));
