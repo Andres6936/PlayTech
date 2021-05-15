@@ -15,6 +15,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class WaiterAddHandle implements HttpHandler {
     @Override
@@ -35,30 +39,24 @@ public class WaiterAddHandle implements HttpHandler {
 
                 // Currently, the form had three (3) fields.
                 String contentForm = new String(data, StandardCharsets.UTF_8);
-                // Split the form in a array of length three (3).
-                String[] keyValue = contentForm.split("&");
+                Map<String, String> params = getParamMap(contentForm);
 
-                // The current convention is: DUI, NAME and SALARY.
-                // The index are: DUI (0), NAME (1) and SALARY (1).
-
-                // Get the value of this field. Again, we divided the String and get the value in the position 1.
-                String name = keyValue[1].split("=")[1];
-                // Same process here, divide and get the value of field.
-                float salary = Float.parseFloat(keyValue[2].split("=")[1]);
 
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection connection = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/Mandomedia", "root", "HDgtDVi5");
-                    PreparedStatement statement = connection.prepareStatement("Insert INTO Employee (Name, Salary) VALUES (?, ?)");
-                    statement.setString(1, name);
-                    statement.setFloat(2, salary);
+                    PreparedStatement statement = connection.prepareStatement("Insert INTO Waiter " +
+                            "(Identification, FirstName, LastName) VALUES (?, ?, ?)");
+                    statement.setInt(1, Integer.parseInt(params.get("Identification")));
+                    statement.setString(2, params.get("FirstName"));
+                    statement.setString(3, params.get("LastName"));
 
                     statement.execute();
 
                     connection.close();
-                } catch (SQLException ignored) {
-                    System.err.println("Error MySQL Connection");
+                } catch (SQLException exception) {
+                    System.err.println("Error MySQL Connection: " + exception.getMessage());
                 } catch (ClassNotFoundException ignored) {
                     System.err.println("The Driver hasn't been loaded");
                 }
@@ -78,5 +76,28 @@ public class WaiterAddHandle implements HttpHandler {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * I've added a filter to avoid processing any empty params. Something
+     * that should not happen, but it allows a cleaner implementation vs.
+     * not handling the issue (and sending an empty response). An example
+     * of this would look like ?param1=value1&param2=
+     * <p>
+     * Ref: https://stackoverflow.com/a/63976481
+     *
+     * @param query The GET parameters for a request.
+     * @return The value key pair with each param in the request.
+     */
+    public static Map<String, String> getParamMap(String query) {
+        // query is null if not provided (e.g. localhost/path )
+        // query is empty if '?' is supplied (e.g. localhost/path? )
+        if (query == null || query.isEmpty()) return Collections.emptyMap();
+
+        return Stream.of(query.split("&"))
+                .filter(s -> !s.isEmpty())
+                .map(kv -> kv.split("=", 2))
+                .collect(Collectors.toMap(x -> x[0], x -> x[1]));
+
     }
 }

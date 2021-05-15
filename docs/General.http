@@ -4,3 +4,10 @@ Content-Type: application/text
 Waiter=1&Meal=1&Table=1&Turn=3&Date=2021-05-16
 
 ###
+
+POST http://localhost:6936/waiter/add
+Content-Type: application/text
+
+Identification=8&FirstName=Al&LastName=Capone
+
+###
