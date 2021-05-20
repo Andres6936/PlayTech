@@ -20,7 +20,7 @@
     </li>
 </ul>
 
-<main class="row row-cols-1 p-4">
+<main class="row row-cols-1 p-4 gy-3">
     <section class="col border p-2 rounded bg-white">
         <div class="card">
             <img src="../img/waiter.jpg" class="card-img-top" alt="Waiter"/>
@@ -32,56 +32,28 @@
         </div>
     </section>
 
-    <section class="col">
+    <section class="col border p-2 rounded bg-white">
+        <div class="card">
+            <img src="../img/waiter.jpg" class="card-img-top" alt="Waiter"/>
+            <div class="card-body">
+                <h6 class="h6 fw-bold mb-1">Sir. Aston Willian</h6>
+                <p class="text-muted mb-1">Table #6, #7, #8</p>
+                <a href="/" class="btn btn-primary mt-2">Information</a>
+            </div>
+        </div>
+    </section>
 
+    <section class="col border p-2 rounded bg-white">
+        <div class="card">
+            <img src="../img/waiter.jpg" class="card-img-top" alt="Waiter"/>
+            <div class="card-body">
+                <h6 class="h6 fw-bold mb-1">Sir. Kanne Matheus</h6>
+                <p class="text-muted mb-1">Table #6, #7, #8</p>
+                <a href="/" class="btn btn-primary mt-2">Information</a>
+            </div>
+        </div>
     </section>
 </main>
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
-<script>
-    function updateLabels() {
-        const salary = document.getElementById('man-salary').value;
-        const afp = salary * 0.08;
-        const isss = salary * 0.11;
-        const income = salary * 0.06;
-
-        // @type {Intl.NumberFormat} The Intl.NumberFormat object enables language-sensitive number formatting.
-        const numberFormat = new Intl.NumberFormat('co-ES', {style: 'currency', currency: 'COP'});
-
-        document.getElementById('man-afp').innerText = numberFormat.format(afp);
-        document.getElementById('man-isss').innerText = numberFormat.format(isss);
-        document.getElementById('man-income').innerText = numberFormat.format(income);
-        document.getElementById('man-total').innerText = numberFormat.format(afp + isss + income);
-    }
-
-    /**
-     * Data validation is the process of ensuring that user input is clean, correct, and useful.
-     *
-     * The current mechanism of validation is Client side validation, the which is performed by
-     * a web browser, before input is sent to a web server.
-     *
-     * @returns {boolean} True if the form is clean, correct and useful, false otherwise.
-     */
-    function validateFormAdd() {
-        const nameEmployee = document.forms['man-form-add']['man-input-employee-name'].value;
-        const salaryEmployee = document.forms['man-form-add']['man-input-employee-salary'].value;
-
-        const onlyNames = /^[a-zA-Z ]*$/;
-
-        if (!nameEmployee.match(onlyNames)) {
-            alert('The name must be content only letters and spaces (not numbers).');
-            // The form not is valid.
-            return false;
-        }
-
-        if (salaryEmployee < 908526) {
-            alert('The salary must be greater or equal to SMMLV (COP 908.526).');
-            // The form not is valid.
-            return false;
-        }
-
-        // The form has been validated and the information is true.
-        return true;
-    }
-</script>
 </body>
 </html>
